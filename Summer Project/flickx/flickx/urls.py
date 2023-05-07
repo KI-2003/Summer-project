@@ -19,4 +19,5 @@ from django.urls import include,path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('flickxchat/', include("flickxchat.urls")),
+    path('flickxmeet/',include("flickxmeet.urls"))
 ]

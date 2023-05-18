@@ -10,8 +10,22 @@ def rooms(request):
     return render(request, 'room/rooms.html', {'rooms': rooms})
 
 @login_required
-def room(request, slug):
-    room = Room.objects.get(slug=slug)
-    messages = Message.objects.filter(room=room)[0:25]
+def enter_room(request):
+    
+    if request.method == 'POST':
+        room_name = request.POST['room_name']
+        password = request.POST['password']
 
-    return render(request, 'room/room.html', {'room': room, 'messages': messages})
+        try:
+            room = Room.objects.get(name=room_name, password=password)
+        except Room.DoesNotExist:
+            error_message = 'Invalid room name or password.'
+            return redirect(room/rooms.html)
+
+        # Perform actions after successful room entry
+        # For example, you could redirect the user to a success page or perform additional logic here.
+
+        messages = Message.objects.filter(room=room)[0:25]
+        return render(request, 'room/room.html',{'room': room, 'messages': messages})
+    
+    return render(request, 'room/rooms.html')

@@ -5,5 +5,5 @@ from room.views import enter_room
 
 urlpatterns = [
     path('', views.rooms, name='rooms'),
-    path('enter-room/', enter-room, name='enter-room'),
+    path('enter-room/', enter_room, name='enter-room'),
 ]

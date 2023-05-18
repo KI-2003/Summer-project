@@ -20,7 +20,7 @@ def enter_room(request):
             room = Room.objects.get(name=room_name, password=password)
         except Room.DoesNotExist:
             error_message = 'Invalid room name or password.'
-            return redirect(room/rooms.html)
+            return render(request,'room/rooms.html',{'error_message':error_message})
 
         # Perform actions after successful room entry
         # For example, you could redirect the user to a success page or perform additional logic here.
